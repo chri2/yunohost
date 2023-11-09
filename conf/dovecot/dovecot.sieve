@@ -1,4 +1,7 @@
-require "fileinto"; 
-    if header :contains "X-Spam-Flag" "Yes" { 
-        fileinto "Junk"; 
-    }
+require ["imap4flags","fileinto"];
+
+if header :contains ["X-Spam"] "Yes"
+{
+    addflag "\\Seen";
+    fileinto "junk";
+}
